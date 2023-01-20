@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 16 Jan. 2023 -->
+<!-- 20 Jan. 2023 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Migrating from Jekyll to org-mode and Github Actions</title>
@@ -50,26 +50,26 @@
 <h1 class="title">Migrating from Jekyll to org-mode and Github Actions</h1>
 <p class="subtitle">Sep 03, 2019</p>
 </header>
-<section id="outline-container-org8104a52" class="outline-2">
-<h2 id="org8104a52">Introduction</h2>
-<div class="outline-text-2" id="text-org8104a52">
+<section id="outline-container-orgb965384" class="outline-2">
+<h2 id="orgb965384">Introduction</h2>
+<div class="outline-text-2" id="text-orgb965384">
 <p>
 My <a href="http://mac-vicar.eu">website</a> has been generated until now by <a href="https://pages.github.com/">Github pages</a> using a static site generator tool called <a href="https://jekyllrb.com/">Jekyll</a> and the <a href="http://jekyllthemes.org/themes/lagom/">Lagom</a> theme.
 </p>
 </div>
 
-<div id="outline-container-orgb420c1c" class="outline-3">
-<h3 id="orgb420c1c">Github Pages</h3>
-<div class="outline-text-3" id="text-orgb420c1c">
+<div id="outline-container-org372dd8d" class="outline-3">
+<h3 id="org372dd8d">Github Pages</h3>
+<div class="outline-text-3" id="text-org372dd8d">
 <p>
 Github Pages allows to host static sites in Github repositories for free. It is very simple, you would just put the website in a branch (eg. <code>gh-pages</code>) and Github will serve it as <i>username.github.io/repo</i>, or via a custom domain by adding a simple <i>CNAME</i> text file to the repository.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org5bb2fe4" class="outline-3">
-<h3 id="org5bb2fe4">Static Site Generators</h3>
-<div class="outline-text-3" id="text-org5bb2fe4">
+<div id="outline-container-org61ea6dc" class="outline-3">
+<h3 id="org61ea6dc">Static Site Generators</h3>
+<div class="outline-text-3" id="text-org61ea6dc">
 <p>
 If you did not want to write <i>HTML</i> directly, you could use a <a href="https://en.wikipedia.org/wiki/Web_template_system#Static_site_generators">static site generator</a> to keep a set of templates and content in the git repository and putting the output of the generator (the <i>HTML</i> files) into the <code>gh-pages</code> branch to be served by Github.
 </p>
@@ -84,9 +84,9 @@ If you wanted this process to be automatic, you could run the generation as part
 </div>
 </div>
 
-<div id="outline-container-orgba8b66c" class="outline-3">
-<h3 id="orgba8b66c">Jekyll support in Github Pages</h3>
-<div class="outline-text-3" id="text-orgba8b66c">
+<div id="outline-container-org3e53434" class="outline-3">
+<h3 id="org3e53434">Jekyll support in Github Pages</h3>
+<div class="outline-text-3" id="text-org3e53434">
 <p>
 Jekyll is one of these site generators and it was the most popular for a while. The nice part was that if you used Jekyll, Github Pages will generate your website automatically, without having to setup CI. Just push your changes and a minute later your site was published.
 </p>
@@ -98,9 +98,9 @@ On the other hand, you were limited by using the Jekyll version that was install
 </div>
 </section>
 
-<section id="outline-container-orgef2f831" class="outline-2">
-<h2 id="orgef2f831">Moving away from Jekyll</h2>
-<div class="outline-text-2" id="text-orgef2f831">
+<section id="outline-container-orgb0a4dea" class="outline-2">
+<h2 id="orgb0a4dea">Moving away from Jekyll</h2>
+<div class="outline-text-2" id="text-orgb0a4dea">
 <p>
 Jekyll just worked. I can&rsquo;t complain about it. However, I feel too tied to the Github Pages environment. You had to use a Jekyll version that was close to a year behind and live with the plugins that the environment supported, and nothing more.
 </p>
@@ -119,9 +119,9 @@ I knew that <code>org-mode</code> was quite good at exporting. After I saw a cou
 </div>
 </section>
 
-<section id="outline-container-org8910a18" class="outline-2">
-<h2 id="org8910a18">Inspiration</h2>
-<div class="outline-text-2" id="text-org8910a18">
+<section id="outline-container-org50df586" class="outline-2">
+<h2 id="org50df586">Inspiration</h2>
+<div class="outline-text-2" id="text-org50df586">
 <p>
 As I did not know where to start, I started by reading a lot of solutions by other people, documentation, posts, etc.
 </p>
@@ -139,13 +139,13 @@ Most of the structure of the final solution, its ideas, conventions, configurati
 </div>
 </section>
 
-<section id="outline-container-orgaa5bcd8" class="outline-2">
-<h2 id="orgaa5bcd8">Implementation</h2>
-<div class="outline-text-2" id="text-orgaa5bcd8">
+<section id="outline-container-orgc639c15" class="outline-2">
+<h2 id="orgc639c15">Implementation</h2>
+<div class="outline-text-2" id="text-orgc639c15">
 </div>
-<div id="outline-container-org0f50621" class="outline-3">
-<h3 id="org0f50621">Principles</h3>
-<div class="outline-text-3" id="text-org0f50621">
+<div id="outline-container-org0450778" class="outline-3">
+<h3 id="org0450778">Principles</h3>
+<div class="outline-text-3" id="text-org0450778">
 <p>
 Once I had a clear picture of the domain, I made up my mind of how I wanted it and my own requirements:
 </p>
@@ -160,17 +160,17 @@ Once I had a clear picture of the domain, I made up my mind of how I wanted it a
 </div>
 </div>
 
-<div id="outline-container-org034ef56" class="outline-3">
-<h3 id="org034ef56">Emacs concepts to be used</h3>
-<div class="outline-text-3" id="text-org034ef56">
+<div id="outline-container-org44ee9ac" class="outline-3">
+<h3 id="org44ee9ac">Emacs concepts to be used</h3>
+<div class="outline-text-3" id="text-org44ee9ac">
 <p>
 There are a bunch of emacs concepts that help putting all the pieces together:
 </p>
 </div>
 
-<div id="outline-container-orgec16464" class="outline-4">
-<h4 id="orgec16464">Emacs batch mode</h4>
-<div class="outline-text-4" id="text-orgec16464">
+<div id="outline-container-org88f6b62" class="outline-4">
+<h4 id="org88f6b62">Emacs batch mode</h4>
+<div class="outline-text-4" id="text-org88f6b62">
 <p>
 While I could have most of the configuration in my <code>~/.emacs.d/init.el</code>, I wanted a self-contained solution, not depending on my personal emacs configuration being available.
 </p>
@@ -179,7 +179,7 @@ While I could have most of the configuration in my <code>~/.emacs.d/init.el</cod
 There are a bunch of <i>emacs</i> options that help achieving this:
 </p>
 
-<pre class="example" id="orgef809e2">
+<pre class="example" id="orgd17908d">
 $ emacs --help
 ...
 --batch                     do not do interactive display; implies -q
@@ -198,18 +198,18 @@ With these options, we can put all our configuration and helper functions in a <
 </div>
 </div>
 
-<div id="outline-container-orgaa0f60b" class="outline-4">
-<h4 id="orgaa0f60b">org-mode Export (ox)</h4>
-<div class="outline-text-4" id="text-orgaa0f60b">
+<div id="outline-container-org8bae4de" class="outline-4">
+<h4 id="org8bae4de">org-mode Export (ox)</h4>
+<div class="outline-text-4" id="text-org8bae4de">
 <p>
 <i>org-mode</i> includes an <a href="https://orgmode.org/manual/Exporting.html">Export subsystem</a> with several target formats (<i>ASCII</i>, <a href="https://en.wikipedia.org/wiki/Beamer_(LaTeX)"><i>beamer</i></a>, <i>HTML</i>, etc). Every backend/converter is a set of functions that take already parsed <i>org-mode</i> structures (eg. a list, a timestamp, a paragraph) and converts it to the target format. <a href="https://orgmode.org/worg/">Worg</a>, a section of the Org-mode web site that is written by a volunteer community of Org-mode fans, provide <a href="https://orgmode.org/worg/dev/org-export-reference.html">documentation on how to define an export backend</a> (<i>org-export-define-backend</i>). From here is important to understand <a href="https://orgmode.org/worg/dev/org-export-reference.html#filter-system">the filter system</a> and <i>org-export-define-derived-backend</i>, which allows to define a backend by overriding an existing one. This is what I will end using to tweak, for example, how timestamps are exported.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org267d0e5" class="outline-4">
-<h4 id="org267d0e5">org-publish</h4>
-<div class="outline-text-4" id="text-org267d0e5">
+<div id="outline-container-org0dcc534" class="outline-4">
+<h4 id="org0dcc534">org-publish</h4>
+<div class="outline-text-4" id="text-org0dcc534">
 <p>
 <i>org-mode</i> includes a <a href="https://orgmode.org/manual/Publishing.html">publishing management system</a> that helps exporting a interlinked set of org files. There is a <a href="https://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html">nice tutorial</a> also available.
 </p>
@@ -221,14 +221,14 @@ Using <i>org-publish</i> boils down to defining a list of components (blog posts
 </div>
 </div>
 
-<div id="outline-container-org06824df" class="outline-3">
-<h3 id="org06824df">The solution</h3>
-<div class="outline-text-3" id="text-org06824df">
+<div id="outline-container-orgd1b5fe7" class="outline-3">
+<h3 id="orgd1b5fe7">The solution</h3>
+<div class="outline-text-3" id="text-orgd1b5fe7">
 </div>
-<div id="outline-container-org7013d35" class="outline-4">
-<h4 id="org7013d35">Directory Structure</h4>
-<div class="outline-text-4" id="text-org7013d35">
-<pre class="example" id="orgce6986a">
+<div id="outline-container-orgb249b4e" class="outline-4">
+<h4 id="orgb249b4e">Directory Structure</h4>
+<div class="outline-text-4" id="text-orgb249b4e">
+<pre class="example" id="orgbaa8cf4">
 ├── CNAME
 ├── css
 │   ├── index.css
@@ -273,18 +273,18 @@ Inside the directory tree, you can find:
 </div>
 </div>
 
-<div id="outline-container-org914577e" class="outline-4">
-<h4 id="org914577e">publish.el</h4>
-<div class="outline-text-4" id="text-org914577e">
+<div id="outline-container-orgfb0fd17" class="outline-4">
+<h4 id="orgfb0fd17">publish.el</h4>
+<div class="outline-text-4" id="text-orgfb0fd17">
 <p>
 The main file containing code and configuration includes a few custom publishing functions that are used as hooks for publishing and creating sitemaps.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgd870560" class="outline-4">
-<h4 id="orgd870560">org-publish project</h4>
-<div class="outline-text-4" id="text-orgd870560">
+<div id="outline-container-org8827ad3" class="outline-4">
+<h4 id="org8827ad3">org-publish project</h4>
+<div class="outline-text-4" id="text-org8827ad3">
 <p>
 The <i>org-publish</i> project (<i>org-publish-project-alist</i>) is defined in the variable <i>duncan&#x2013;publish-project-alist</i>, and defines the following components:
 </p>
@@ -336,7 +336,7 @@ The sitemap function is also configured, like in the <i>blog</i> component, but 
 </ul>
 
 
-<figure id="org218bfcd">
+<figure id="org60183ab">
 <img src="images/sitemap-function.png" alt="sitemap-function.png">
 
 </figure>
@@ -368,18 +368,18 @@ It works just like posts, but I setup each (don&rsquo;t expect to have many) to 
 </ul>
 
 
-<figure id="org38f36ac">
+<figure id="org2d3cee1">
 <img src="images/readtheorg.png" alt="readtheorg.png">
 
 </figure>
 </div>
 </div>
 
-<div id="outline-container-org4fbbcc1" class="outline-4">
-<h4 id="org4fbbcc1">Export workflow</h4>
-<div class="outline-text-4" id="text-org4fbbcc1">
+<div id="outline-container-org97db4c2" class="outline-4">
+<h4 id="org97db4c2">Export workflow</h4>
+<div class="outline-text-4" id="text-org97db4c2">
 
-<figure id="org8ab6773">
+<figure id="org951667d">
 <img src="images/publishing-function.png" alt="publishing-function.png">
 
 </figure>
@@ -387,30 +387,30 @@ It works just like posts, but I setup each (don&rsquo;t expect to have many) to 
 </div>
 </div>
 
-<div id="outline-container-org489b960" class="outline-3">
-<h3 id="org489b960">Look &amp; Feel</h3>
-<div class="outline-text-3" id="text-org489b960">
+<div id="outline-container-org5290520" class="outline-3">
+<h3 id="org5290520">Look &amp; Feel</h3>
+<div class="outline-text-3" id="text-org5290520">
 <p>
 I managed to port most of the <i>Lagom</i> look and feel by starting a CSS from scratch (learned <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid">CSS Grid</a> in the process) and manually fixing each difference. I was quite satisfied with the final result. I had to use some extra page-specific CSS to hide the title in the front-page, or to <a href="https://emacs.stackexchange.com/questions/36898/proper-way-to-add-to-org-entities-user">display</a> <a href="https://fontawesome.com/">FontAwesome</a> icons.
 </p>
 </div>
 
-<div id="outline-container-orgc87497d" class="outline-4">
-<h4 id="orgc87497d">Before</h4>
-<div class="outline-text-4" id="text-orgc87497d">
+<div id="outline-container-orge34980d" class="outline-4">
+<h4 id="orge34980d">Before</h4>
+<div class="outline-text-4" id="text-orge34980d">
 
-<figure id="org9f843b2">
+<figure id="org642e429">
 <img src="images/jekyll.png" alt="jekyll.png">
 
 </figure>
 </div>
 </div>
 
-<div id="outline-container-org3db5077" class="outline-4">
-<h4 id="org3db5077">After</h4>
-<div class="outline-text-4" id="text-org3db5077">
+<div id="outline-container-org12b886d" class="outline-4">
+<h4 id="org12b886d">After</h4>
+<div class="outline-text-4" id="text-org12b886d">
 
-<figure id="org93265cb">
+<figure id="org6b8bad9">
 <img src="images/org.png" alt="org.png">
 
 </figure>
@@ -419,9 +419,9 @@ I managed to port most of the <i>Lagom</i> look and feel by starting a CSS from 
 </div>
 </section>
 
-<section id="outline-container-orgcd35a6c" class="outline-2">
-<h2 id="orgcd35a6c">Publishing</h2>
-<div class="outline-text-2" id="text-orgcd35a6c">
+<section id="outline-container-org8606152" class="outline-2">
+<h2 id="org8606152">Publishing</h2>
+<div class="outline-text-2" id="text-org8606152">
 <p>
 While locally you can test by running <i>emacs</i> via the <i>Makefile</i>, I wanted a new way to run the generation on every git push:
 </p>
@@ -436,9 +436,9 @@ While locally you can test by running <i>emacs</i> via the <i>Makefile</i>, I wa
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
 
-<div id="outline-container-org239bdff" class="outline-3">
-<h3 id="org239bdff">Setting up a workflow to build the site</h3>
-<div class="outline-text-3" id="text-org239bdff">
+<div id="outline-container-orgb0eacc6" class="outline-3">
+<h3 id="orgb0eacc6">Setting up a workflow to build the site</h3>
+<div class="outline-text-3" id="text-orgb0eacc6">
 <p>
 While, on Linux, Github actions run on Ubuntu, they allow you to execute an action inside a container.
 </p>
@@ -486,9 +486,9 @@ The experience with Github Actions has been very positive. I will definitely rep
 </div>
 </section>
 
-<section id="outline-container-orgff72d38" class="outline-2">
-<h2 id="orgff72d38">Conclusions</h2>
-<div class="outline-text-2" id="text-orgff72d38">
+<section id="outline-container-orgb4d625c" class="outline-2">
+<h2 id="orgb4d625c">Conclusions</h2>
+<div class="outline-text-2" id="text-orgb4d625c">
 <p>
 Not only I have a website powered by the tool I use daily, but it is also packed with awesome features. For example, the diagrams in this post are inlined as <a href="http://plantuml.com/">PlantUML</a> code in the <i>org</i> file and exported via <a href="https://orgmode.org/worg/org-contrib/babel/intro.html">Org Babel</a>.
 </p>
@@ -506,7 +506,7 @@ The source of this site is available <a href="https://github.com/dmacvicar/site.
 <footer id="postamble" class="status">
 <p class='disclaimer'>The postings on this site are my own and don't necessarily represent my employer’s positions, strategies or opinions.</p>
 
-<p>Last updated 16 Jan. 2023. Built with <a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="https://orgmode.org">Org</a> mode 9.4.4). <a href="/README.html">Details</a>.</p>
+<p>Last updated 20 Jan. 2023. Built with <a href="https://www.gnu.org/software/emacs/">Emacs</a> 27.2 (<a href="https://orgmode.org">Org</a> mode 9.4.4). <a href="/README.html">Details</a>.</p>
 </footer>
 </body>
 </html>
